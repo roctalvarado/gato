@@ -1,0 +1,18 @@
+from entities.user import User
+from getpass import getpass
+
+def register_user():
+    name = input("Nombre: ")
+    account = input("Cuenta: ")
+    curp = input("CURP: ")
+    password = getpass("Contraseña: ")
+
+    User.insert(name, account, curp, password)
+
+if __name__ == "__main__":
+    print("Seleccione una opción del menú")
+    print("1.- Registrar un usuario")
+    print("2.- Consultar usuarios")
+    option = int(input())
+    if option == 1:
+        register_user()
