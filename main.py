@@ -5,12 +5,12 @@ from security.crypto import encrypt, decrypt
 def register_user():
     name = input("Nombre: ")
     account = input("Cuenta: ")
-    curp = input("CURP: ")
-    password = getpass("Contraseña: ")
-
-    if User.check_account_exists():
+    
+    if User.check_account_exists(account):
         print("Usuario ya existe.")
     else:
+        curp = input("CURP: ")
+        password = getpass("Contraseña: ")
         User.insert(name, curp, account, password)
 
 def view_users():
@@ -29,7 +29,6 @@ def login():
     # return user and user.password == password
 
 if __name__ == "__main__":
-    #gfdgdfhdrd
     print("Inicio de sesión")
     if login():
         print("Seleccione una opción del menú")

@@ -32,13 +32,8 @@ class User:
         sql = "SELECT account FROM user WHERE account = %s"
 
         cursor.execute(sql, (account,))
-        rows = cursor.fetchall()
-
-        if rows >= 1:
-            return True
-        else:
-            return False
         
+        return cursor.fetchone() is not None
 
     def get_users():
         connection = get_connection()
