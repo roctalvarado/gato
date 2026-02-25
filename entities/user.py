@@ -29,9 +29,9 @@ class User:
         # Retornar true si la colección contiene 1 o más elementos. Si contiene cero, retornar false
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
-        sql = "SELECT account FROM user"
+        sql = "SELECT account FROM user WHERE account = %s"
 
-        cursor.execute(sql)
+        cursor.execute(sql, (account,))
         rows = cursor.fetchall()
 
         if rows >= 1:

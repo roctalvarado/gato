@@ -8,7 +8,10 @@ def register_user():
     curp = input("CURP: ")
     password = getpass("Contraseña: ")
 
-    User.insert(name, curp, account, password)
+    if User.check_account_exists():
+        print("Usuario ya existe.")
+    else:
+        User.insert(name, curp, account, password)
 
 def view_users():
     users = User.get_users()
