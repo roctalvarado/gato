@@ -71,5 +71,5 @@ class User:
                 account = row["account"],
                 curp = decrypt(row["curp"]),
                 password = decrypt(row["password"])
-            )
+            ) #, User(id = row["id"])
     
