@@ -3,11 +3,12 @@ from security.crypto import encrypt, decrypt
 
 class Card:
 
-    def __init__(self, id:int, number:str, bank:str, card_type:str):
+    def __init__(self, id:int, number:str, bank:str, card_type:str, id_user:int):
         self.id = id
         self.number = number
         self.bank = bank
         self.card_type = card_type
+        self.id_user = id_user
     
     def insert(number, bank, card_type, id_user):
         connection = get_connection()
@@ -24,11 +25,14 @@ class Card:
 
     def get_cards_by_user_id(id_user):
         connection = get_connection()
-        cursor = connection.cursor()
+        cursor = connection.cursor(dictionary=True)
 
         sql = "SELECT id, number, bank, card_type, id_user FROM card WHERE id_user = %s"
         cursor.execute(sql, (id_user,))
         rows = cursor.fetchall()
+
+        cursor.close()
+        connection.close()
 
         return [
             Card(

@@ -43,6 +43,9 @@ class User:
         cursor.execute(sql)
         rows = cursor.fetchall()
 
+        cursor.close()
+        connection.close()
+
         return [
             User(
                 id = row["id"],
@@ -61,6 +64,9 @@ class User:
 
         cursor.execute(sql, (account,))
         row = cursor.fetchone()
+
+        cursor.close()
+        connection.close()
 
         if row is None:
             return None
